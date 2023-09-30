@@ -34,7 +34,7 @@ class State(rx.State):
 
     async def send_message(self) -> None:
         """Broadcast chat message to other connected clients."""
-        m = Message(nick=self.nick.title(), sent=time.time(), message=self.in_message.capitalize())
+        m = Message(nick=self.nick, sent=time.time(), message=self.in_message)
         await broadcast_event("state.incoming_message", payload=dict(message=m))
         self.in_message = ""
 
